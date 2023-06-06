@@ -687,5 +687,15 @@
 "cuisine": "Chinese",
 "ingredients": "Pork belly, Soy sauce, Shaoxing wine, Sugar, Ginger, Garlic, Star anise, Cinnamon stick, Water",
 "instructions": "Cut the pork belly into small cubes. In a hot wok or pot, add the pork belly and cook until the fat starts to render. Add ginger and garlic, and stir-fry until fragrant. Pour in soy sauce and Shaoxing wine, and stir to coat the pork. Add sugar, star anise, and cinnamon stick. Pour in enough water to cover the pork. Bring to a boil, then reduce heat and simmer for about 1.5 to 2 hours, or until the pork is tender and the sauce has thickened. Serve hot with steamed rice."
+},
+{
+"shortId": "69",
+"name": "Braised Pork Belly with Preserved Mustard Greens",
+"calories": 400,
+"description": "A traditional Chinese dish featuring succulent braised pork belly served with preserved mustard greens.",
+"image": "./recipe_images/Braised_Pork_Belly_with_Mustard_Greens.jpg",
+"cuisine": "Chinese",
+"ingredients": "Pork belly, Preserved mustard greens, Soy sauce, Sugar, Ginger, Garlic, Shaoxing wine, Star anise, Cinnamon stick, Water",
+"instructions": "Slice the pork belly into thick pieces. Rinse the preserved mustard greens thoroughly and cut them into smaller sections. In a hot wok or pot, add the pork belly and cook until the fat starts to render. Add ginger and garlic, and stir-fry until fragrant. Pour in soy sauce, sugar, and Shaoxing wine, and stir to coat the pork. Add the preserved mustard greens, star anise, and cinnamon stick. Pour in enough water to cover the ingredients. Bring to a boil, then reduce heat and simmer for about 1.5 to 2 hours, or until the pork is tender and the sauce has thickened. Serve hot with steamed rice."
 }
 ]
