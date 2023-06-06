@@ -17,6 +17,24 @@ function RecipeDetail() {
     instructions: "",
   });
   const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  function fetchCurrentUser() {
+    fetch("http://localhost:4000/users/current")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+        } else {
+          console.log("Error", data);
+        }
+        if (data === "admin") {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      })
+      .catch((error) => console.error(error));
+  }
 
   const recipe = recipes.find((recipe) =>
     Array.isArray(recipe.name)
@@ -89,6 +107,7 @@ function RecipeDetail() {
   //Get the recipes
   useEffect(() => {
     fetchRecipes();
+    fetchCurrentUser();
   }, []);
 
   return (
@@ -102,9 +121,13 @@ function RecipeDetail() {
             <img src={recipe.image} className="image" onLoad={handleImage} />
             <div className="second">
               <p className="calories">{recipe.calories} calories</p>
-              <button className="update" onClick={handleUpdate}>
-                Update Form
-              </button>
+              {isAdmin ? (
+                <button className="update" onClick={handleUpdate}>
+                  Update Form
+                </button>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           <div className="third">

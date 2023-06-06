@@ -23,19 +23,8 @@ function Landing() {
             best for you.
           </p>
           <p>
-            The left one will bring you to the database and let you make changes
-            to it if you want to create new recipes or find some that are not
-            necessary or are plain incorrect.
-          </p>
-          <p>
-            The right one will bring you to the Recipe Lookup and allows you to
-            search for whatever you want to cook. As long as we have the recipe
-            for it, you'll be able to find it!
-          </p>
-          <p>
-            You can also access these via the buttons on the top right of the
-            page. The FAQ also tells you a little more about us and how the
-            recipe book works.
+            The FAQ also tells you a little more about us and how the recipe
+            book works.
           </p>
           <p>
             Come over, share with your friends, and have fun cooking to your
@@ -48,8 +37,8 @@ function Landing() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.5 }}
           >
-            <Link to="/DatabaseSimulation">
-              <button>Delete and create recipes</button>
+            <Link to="/Pricing">
+              <button>Frequently asked questions</button>
             </Link>
           </motion.div>
           <motion.div
@@ -58,7 +47,7 @@ function Landing() {
             transition={{ duration: 1.5 }}
           >
             <Link to="/Lookup">
-              <button>Search and update recipes</button>
+              <button>Search for recipes</button>
             </Link>
           </motion.div>
         </div>

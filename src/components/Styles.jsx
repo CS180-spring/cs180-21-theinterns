@@ -24,7 +24,7 @@ export const StyledNav = styled.nav`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-top: -10px;
+  margin-top: auto;
   background-color: red;
   border: 2px solid black;
   height: 100px;
@@ -50,6 +50,18 @@ export const StyledNav = styled.nav`
     font-weight: 750;
     text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
       1px 1px 0 black;
+  }
+
+  .user {
+    font-family: "Open-sans", sans-serif;
+    margin: auto;
+    padding: 12px;
+    background-color: #ebfc04;
+    h5 {
+      font-family: "Lobster", cursive;
+      text-align: center;
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -514,5 +526,33 @@ export const Register = styled.form`
 
   button:hover {
     background-color: #e2150e;
+  }
+`;
+export const LogoutPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #fafafa;
+`;
+
+export const Title = styled.h3`
+  color: #333;
+  margin-bottom: 2rem;
+`;
+
+export const LogoutButton = styled.button`
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #0056b3;
   }
 `;

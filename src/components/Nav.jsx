@@ -5,6 +5,7 @@ import { StyledNav } from "./Styles";
 function Nav() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isData, setIsData] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const user_validation = () => {
     if (isData !== "") {
@@ -21,6 +22,11 @@ function Nav() {
           user_validation();
         } else {
           console.log("Error", data);
+        }
+        if (data === "admin") {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
         }
       })
       .catch((error) => console.error(error));
@@ -44,10 +50,14 @@ function Nav() {
         {" "}
         <Link to="/Pricing">FAQ</Link>
       </li>
-      <li>
-        {" "}
-        <Link to="/DatabaseSimulation">Database</Link>
-      </li>
+      {isAdmin ? (
+        <li>
+          <Link to="/DatabaseSimulation">Database</Link>
+        </li>
+      ) : (
+        ""
+      )}
+
       {!isLoggedIn ? (
         <li>
           <Link to="/Login">Login</Link>
@@ -57,7 +67,15 @@ function Nav() {
           <Link to="/Logout">Logout</Link>
         </li>
       )}
-      <h5>{isData}</h5>
+      {!isLoggedIn ? (
+        <div className="user">
+          <h5>Welcome, guest</h5>
+        </div>
+      ) : (
+        <div className="user">
+          <h5>Welcome, {isData}</h5>
+        </div>
+      )}
     </StyledNav>
   );
 }

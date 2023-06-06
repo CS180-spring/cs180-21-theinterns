@@ -15,6 +15,11 @@ function LoginPage() {
     setPassword(e.target.value);
   };
 
+  function login() {
+    navigate("/");
+    window.location.reload();
+  }
+
   const HandleSubmit = (e) => {
     fetch("http://localhost:4000/users/login", {
       method: "POST",
@@ -34,9 +39,8 @@ function LoginPage() {
         }
       })
       .then((data) => {
+        login();
         console.log("Token:", data.token);
-        console.log(data);
-        navigate("/");
       })
       .catch((error) => {
         console.error("Error:", error.message);
