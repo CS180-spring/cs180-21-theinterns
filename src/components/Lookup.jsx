@@ -78,14 +78,34 @@ function Lookup() {
     }
     //name search
     else {
+      let recipe_counter = 0;
       const lookup_recipe = inp.join(" ");
       const lookup_filter = recipes.filter((recipe) => {
         let recipeName = Array.isArray(recipe.name)
           ? recipe.name.join(" ")
           : recipe.name;
+        //console.log("array here: " + recipeName.toLowerCase().includes(lookup_recipe.toLowerCase()));
+        if (recipeName.toLowerCase().includes(lookup_recipe.toLowerCase()) == true) {
+          recipe_counter++;
+          //console.log("recipe_counter: " + recipe_counter);
+        }
+        //console.log("final recipe counter: " + recipe_counter)
         return recipeName.toLowerCase().includes(lookup_recipe.toLowerCase());
       });
       setFilteredRecipes([...filteredRecipes, ...lookup_filter]);
+
+      //ingredient search
+      if (recipe_counter == 0) {
+          //console.log("in ingredients search");
+          const lookup_ingredients = inp.join(" ");
+          const ingredients_filter = recipes.filter((recipe) => {
+          let recipeIngredient = Array.isArray(recipe.ingredients)
+          ? recipe.ingredients.join(" ")
+          : recipe.ingredients;
+          return recipeIngredient.toLowerCase().includes(lookup_ingredients.toLowerCase());
+        });
+        setFilteredRecipes([...filteredRecipes, ...ingredients_filter]);
+      }
     }
   }
 
