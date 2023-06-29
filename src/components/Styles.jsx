@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BsArrowRightSquareFill } from "react-icons/bs";
+import book from "./styling_images/book.jpg";
 
 //App
 export const StyledApp = styled.div`
@@ -25,12 +26,12 @@ export const StyledNav = styled.nav`
   justify-content: flex-start;
   align-items: center;
   margin-top: auto;
-  background-color: red;
+  background-color: #030F69;
   border: 2px solid black;
   height: 100px;
   a {
     text-decoration: none;
-    color: orange;
+    color: #FFAF2F;
   }
 
   h1 {
@@ -70,27 +71,34 @@ export const StyledLanding = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+  text-align: left;
   margin-top: 50px;
   margin-bottom: 50px;
   .heading {
     display: inline-block;
+    margin-left: 150px;
   }
 
   a {
     text-decoration: none;
   }
 
+  .row {
+    display: flex
+  }
+
   .body {
-    margin-left: 80px;
-    margin-right: 80px;
+    flex: 50%;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-bottom: 0px;
   }
 
   .buttons {
     margin-top: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-left: auto;
+    margin-left: 20px;
     margin-right: auto;
     justify-items: center;
     align-items: center;
@@ -110,7 +118,7 @@ export const StyledLanding = styled.div`
     }
     button:hover {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+    } 
   }
 
   h1 {
@@ -136,6 +144,7 @@ export const StyledLanding = styled.div`
     color: orange;
     margin-left: 10px;
   }
+
 `;
 
 //Recipe Lookup
