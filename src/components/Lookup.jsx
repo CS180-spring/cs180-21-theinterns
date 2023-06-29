@@ -53,7 +53,7 @@ function Lookup() {
     if (flag) {
       return <ReactCountryFlag countryCode={flag} svg />;
     } else {
-      return "Flag not found";
+      return recipe.cuisine;
     }
   };
 
