@@ -578,5 +578,17 @@
     "cuisine": "temp",
     "ingredients": "handsome",
     "instructions": "2024"
+  },
+  {
+    "shortId": "XFaOR3QZ9",
+    "name": [
+      "sushi"
+    ],
+    "calories": "200",
+    "description": "raw fish on rice",
+    "image": "./recipe_images/sushi.jpg",
+    "cuisine": "temp",
+    "ingredients": "temp",
+    "instructions": "temp"
   }
 ]

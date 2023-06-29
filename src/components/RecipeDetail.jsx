@@ -21,7 +21,7 @@ function RecipeDetail() {
 
   //For Image Upload
   const inputRef = useRef(null);
-  const [image, setImage] = useState(null);
+  const [file, setFile] = useState(null);
 
   function fetchCurrentUser() {
     fetch("http://localhost:4000/users/current")
@@ -104,7 +104,7 @@ function RecipeDetail() {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, } = e.target;
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -144,16 +144,17 @@ function RecipeDetail() {
     inputRef.current.click();
   }
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    console.log(file);
-    const imageName = file.name;
+  const handleImageChange = (e) => {
+    /*
+    const img = event.target.files[0];
+    console.log(img);
+    const imageName = img.name;
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(img);
     reader.onloadend = () => {
-      const img = new Image();
-      img.src = reader.result;
-      img.onload = () => {
+      const newImage = new Image();
+      newImage.src = reader.result;
+      newImage.onload = () => {
         const canvas = document.createElement("canvas");
         canvas.width = '350px';
         canvas.height = '350px';
@@ -165,10 +166,52 @@ function RecipeDetail() {
         canvas.marginRight = '30px';
       }
     }
-    setImage(file);
-    recipe.image={imageName};
-  }
+    setFile(URL.createObjectURL(img));
+    let formdata = new FormData();
+    formdata.append("file", img);
+    */
 
+    console.log(e.target.files);
+    setFile(e.target.files[0]);
+
+    const recipe_index = recipes.findIndex(
+      (item) => item.shortId === recipe.shortId
+    );
+    
+    console.log("file: " + file);
+    console.log("setFile: " + URL.createObjectURL(e.target.files[0]));
+    console.log("recipe: " + e.target.files[0].name);
+
+    const updatedImage = {
+      ...recipe,
+      image: './recipe_images/' + e.target.files[0].name,
+    };
+    fetch(`http://localhost:4000/recipes/update`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedImage),
+    })
+      .then((response) => response.json())
+      .then ((data) => {
+        console.log("Success:", data);
+        fetchRecipes();
+        navigate(`/${updatedImage.name}`);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+      
+      console.log('image: ' + recipe.image);
+      
+  }
+/*
+  const handleUploadButtonClick = (file) => {
+    
+
+  }
+*/
   //Get the recipes
   useEffect(() => {
     fetchRecipes();
@@ -186,9 +229,9 @@ function RecipeDetail() {
             {isAdmin ? (
               <div>
                 <div onClick={(handleImageClick)}>
-                  {image ? 
+                  {file ? 
                     <img 
-                      src={URL.createObjectURL(image)} 
+                      src={URL.createObjectURL(file)} 
                       alt="" 
                       className="image" 
                     /> 
@@ -206,6 +249,7 @@ function RecipeDetail() {
                     style = {{ display: "none" }}
                   />
                 </div>
+                
               </div>
             ) : (
               <img 
