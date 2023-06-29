@@ -1,9 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyledLanding } from "./Styles";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import book from "./styling_images/book.jpg";
+import adminOnly from "./styling_images/adminOnly.jpg";
+
 function Landing() {
+  //Need login info for landing page displays
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isData, setIsData] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const user_validation = () => {
+    if (isData !== "") {
+      setIsLoggedIn(true);
+    }
+  }
+
+  function handleLoginInfo() {
+    fetch("http://localhost:4000/users/current")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          setIsData(data);
+          user_validation();
+        }
+        else {
+          console.log("Error", data);
+        }
+        if (data === "admin") {
+          setIsAdmin(true);
+        }
+        else {
+          setIsAdmin(false);
+        }
+      })
+      .catch((error) => console.error(error));
+  }
+
+  useEffect(() => {
+    handleLoginInfo();
+  }, [isData]);
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -100 }}
@@ -74,25 +112,73 @@ function Landing() {
           </div>
 
           <div className="row">
-            <div className="body">
-            <p>
-              If you want more features, you can register using the button below!
-            </p>
-            <p>
-              If you are already a member, then welcome back! you can login with the button below!
-            </p>
-            </div>
-            <div className="body"></div>
+            
+            {!isLoggedIn ? (
+              <div className="body">
+                <p>
+                If you want more features, you can register using the button below!
+                </p>
+                <p>
+                If you are already a member, then welcome back! you can login with the button below!
+                </p>
+              </div>
+            ) : (
+              <div className="body">
+                <p>
+                  Click below to logout of your account. 
+                </p>
+                <p>
+                  We welcome you to return whenever you want loyal customer.
+                </p>
+              </div>
+            )}
+            
+            {isAdmin ? (
+              <div className="body">
+                <p>
+                  Hello our lovely Admin! 
+                </p>
+                <p>
+                  Please click the button below to access the Database and make any necessary changes.
+                </p>
+              </div>
+            ) : (
+              <div className="body">
+                <p>
+                  Sorry, only the author of our book may access this portion of the website.
+                </p>
+              </div>
+            )}
+
           </div>
           <div className="buttons">
             <motion.div
               initial={{ opacity: 0, x:500 }}
               animate={{ opacity: 1, x:0 }}
               transition={{ duration: 1.5 }}
-              >
-              <Link to="/Login" >
-                <button>Login/Register</button>
-              </Link>
+            >
+              {!isLoggedIn ? (
+                <Link to="/Login" >
+                  <button>Login/Register</button>
+                </Link>
+              ) : (
+                <Link to="/Logout">
+                  <button>Logout</button>
+                </Link>
+              )}
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x:-500 }}
+              animate={{ opacity: 1, x:0 }}
+              transition={{ duration: 1.5 }}
+            >
+              {isAdmin ? (
+                <Link to="/DatabaseSimulation">
+                  <button>Database</button>
+                </Link>
+              ) : (
+                <img src={adminOnly}/>
+              )}
             </motion.div>
           </div>
         </div>
