@@ -385,6 +385,10 @@ export const RecipeDetailDiv = styled.div`
     margin-top: 10px;
   }
 
+  .cuisine {
+    margin_top: 10px;
+  }
+
   .update {
     padding: 25px;
     margin-left: 20px;

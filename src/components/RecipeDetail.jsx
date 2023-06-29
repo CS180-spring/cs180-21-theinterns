@@ -13,6 +13,7 @@ function RecipeDetail() {
   const [formValues, setFormValues] = useState({
     name: "",
     calories: "",
+    cuisine: "",
     ingredients: "",
     instructions: "",
   });
@@ -67,6 +68,7 @@ function RecipeDetail() {
     setFormValues({
       name: recipe.name,
       calories: recipe.calories,
+      cuisine: recipe.cuisine,
       ingredients: recipe.ingredients,
       instructions: recipe.instructions,
     });
@@ -81,6 +83,7 @@ function RecipeDetail() {
       ...recipe,
       name: formValues.name,
       calories: formValues.calories,
+      cuisine: formValues.cuisine,
       ingredients: formValues.ingredients,
       instructions: formValues.instructions,
     };
@@ -260,6 +263,9 @@ function RecipeDetail() {
             )
             }
             <div className="second">
+              <p className="cuisine">
+                Origins: {recipe.cuisine}
+              </p>
               <p className="calories">{recipe.calories} calories</p>
               {isAdmin ? (
                 <button className="update" onClick={handleUpdate}>
@@ -308,6 +314,15 @@ function RecipeDetail() {
             value={formValues.calories}
             onChange={handleChange}
           ></input>
+          <label htmlFor="cuisine">Cuisine</label>
+          <input
+            type="text"
+            name="cuisine"
+            id="cuisine"
+            value={formValues.cuisine}
+            onChange={handleChange}
+          >
+          </input>
           <label htmlFor="ingredients">Ingredients</label>
           <textarea
             name="ingredients"

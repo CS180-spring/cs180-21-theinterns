@@ -587,8 +587,8 @@
     "calories": "200",
     "description": "raw fish on rice",
     "image": "./recipe_images/sushi.jpg",
-    "cuisine": "temp",
-    "ingredients": "temp",
-    "instructions": "temp"
+    "cuisine": "Japanese",
+    "ingredients": "Raw fish, rice, vinegar",
+    "instructions": "Wash the rice.\nCook the rice with vinegar.\nSlice the raw fish.\nPortion the rice and add the raw fish on top."
   }
 ]
