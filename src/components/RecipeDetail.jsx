@@ -20,10 +20,6 @@ function RecipeDetail() {
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
 
-  //For Image Upload
-  const inputRef = useRef(null);
-  const [file, setFile] = useState(null);
-
   function fetchCurrentUser() {
     fetch("http://localhost:4000/users/current")
       .then((response) => response.json())
@@ -142,6 +138,10 @@ function RecipeDetail() {
     })
     
   }*/
+
+  //For Image Upload
+  const inputRef = useRef(null);
+  const [file, setFile] = useState(null);
 
   const handleImageClick = () => {
     inputRef.current.click();
