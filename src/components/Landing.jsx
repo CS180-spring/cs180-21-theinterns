@@ -145,7 +145,7 @@ function Landing() {
             ) : (
               <div className="body">
                 <p>
-                  Sorry, only the author of our book may access this portion of the website.
+                  Sorry, only the author of our book may access this section.
                 </p>
               </div>
             )}
