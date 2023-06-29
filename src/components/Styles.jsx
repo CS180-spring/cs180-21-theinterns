@@ -91,11 +91,11 @@ export const StyledLanding = styled.div`
     flex: 50%;
     padding-left: 150px;
     padding-right: 150px;
-    padding-bottom: 0px;
   }
 
   .buttons {
     margin-top: 40px;
+    margin-bottom: 80px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-left: 20px;
