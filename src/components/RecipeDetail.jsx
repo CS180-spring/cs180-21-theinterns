@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { RecipeDetailDiv, UpdateForm } from "./Styles";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +18,10 @@ function RecipeDetail() {
   });
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
+
+  //For Image Upload
+  const inputRef = useRef(null);
+  const [image, setImage] = useState(null);
 
   function fetchCurrentUser() {
     fetch("http://localhost:4000/users/current")
@@ -104,6 +108,67 @@ function RecipeDetail() {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
+  //Image Upload functions
+
+  /*
+  function handleImageFile(event) {
+    setImage(event.target.files[0])
+  }
+
+  function handleImageUpload() {
+    const formData = new FormData()
+    formData.append('image', image)
+    axios.post('url', formData).then((res) => {
+      console.log(res)
+    })
+
+    /*
+    fetch(
+      'url',
+      {
+        method: "POST",
+        body: formData
+      }
+    ).then((response) => response.json())
+    .then(
+      (result) => {
+      console.log('success', result)
+    })
+    .catch(error => {
+      console.error("Error:", error)
+    })
+    
+  }*/
+
+  const handleImageClick = () => {
+    inputRef.current.click();
+  }
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    console.log(file);
+    const imageName = file.name;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      const img = new Image();
+      img.src = reader.result;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = '350px';
+        canvas.height = '350px';
+        canvas.border = '2px solid black';
+        canvas.objectFit = 'cover';
+        canvas.marginBottom = '10px';
+        canvas.marginRight = '10px';
+        canvas.marginLeft = '40px';
+        canvas.marginRight = '30px';
+      }
+    }
+    setImage(file);
+    recipe.image={imageName};
+  }
+
   //Get the recipes
   useEffect(() => {
     fetchRecipes();
@@ -118,7 +183,38 @@ function RecipeDetail() {
             <h2 className="name">
               {Array.isArray(recipe.name) ? recipe.name.join(" ") : recipe.name}
             </h2>
-            <img src={recipe.image} className="image" onLoad={handleImage} />
+            {isAdmin ? (
+              <div>
+                <div onClick={(handleImageClick)}>
+                  {image ? 
+                    <img 
+                      src={URL.createObjectURL(image)} 
+                      alt="" 
+                      className="image" 
+                    /> 
+                    : 
+                    <img 
+                      src={recipe.image} 
+                      alt="" 
+                      className="image" 
+                    />
+                  }
+                  <input 
+                    type="file" 
+                    ref={inputRef} 
+                    onChange={handleImageChange} 
+                    style = {{ display: "none" }}
+                  />
+                </div>
+              </div>
+            ) : (
+              <img 
+                src={recipe.image} 
+                className="image" 
+                onLoad={handleImage} 
+              />
+            )
+            }
             <div className="second">
               <p className="calories">{recipe.calories} calories</p>
               {isAdmin ? (
