@@ -389,6 +389,10 @@ export const RecipeDetailDiv = styled.div`
     margin_top: 10px;
   }
 
+  .meal_type {
+    margin_top: 10px;
+  }
+
   .update {
     padding: 25px;
     margin-left: 20px;

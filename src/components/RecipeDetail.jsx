@@ -14,6 +14,7 @@ function RecipeDetail() {
     name: "",
     calories: "",
     cuisine: "",
+    meal_type: "",
     ingredients: "",
     instructions: "",
   });
@@ -65,6 +66,7 @@ function RecipeDetail() {
       name: recipe.name,
       calories: recipe.calories,
       cuisine: recipe.cuisine,
+      meal_type: recipe.meal_type,
       ingredients: recipe.ingredients,
       instructions: recipe.instructions,
     });
@@ -80,6 +82,7 @@ function RecipeDetail() {
       name: formValues.name,
       calories: formValues.calories,
       cuisine: formValues.cuisine,
+      meal_type: formValues.meal_type,
       ingredients: formValues.ingredients,
       instructions: formValues.instructions,
     };
@@ -266,6 +269,9 @@ function RecipeDetail() {
               <p className="cuisine">
                 Origins: {recipe.cuisine}
               </p>
+              <p className = "meal_type">
+                {recipe.meal_type}
+              </p>
               <p className="calories">{recipe.calories} calories</p>
               {isAdmin ? (
                 <button className="update" onClick={handleUpdate}>
@@ -320,6 +326,15 @@ function RecipeDetail() {
             name="cuisine"
             id="cuisine"
             value={formValues.cuisine}
+            onChange={handleChange}
+          >
+          </input>
+          <label htmlFor="meal_type">Meal</label>
+          <input
+            type="text"
+            name="meal_type"
+            id="meal_type"
+            value={formValues.meal_type}
             onChange={handleChange}
           >
           </input>

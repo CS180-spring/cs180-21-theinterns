@@ -174,6 +174,7 @@ app.post("/recipes", (req, res) => {
     cuisine,
     ingredients,
     instructions,
+    meal_type,
   } = req.body;
 
   const new_recipe = {
@@ -185,6 +186,7 @@ app.post("/recipes", (req, res) => {
     cuisine,
     ingredients,
     instructions,
+    meal_type,
   };
   recipes.push(new_recipe);
 

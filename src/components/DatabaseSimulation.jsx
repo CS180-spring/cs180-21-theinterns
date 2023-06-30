@@ -33,6 +33,7 @@ function DatabaseSimulation() {
         const des = inp.slice(index + 1).join(" "); //Description is the fourth input
         const imgi = "./recipe_images/obama.jpg"; //New recipes have picture of obama
         const cui = "temp"; //The flag for cuisine is defaulted to American
+        const mlt = "temp";
         const ing = "temp"; //Ingredients and instructions are empty to be updated by user manually (large input)
         const ins = "temp";
         const post = {
@@ -43,6 +44,7 @@ function DatabaseSimulation() {
             description: des,
             image: imgi,
             cuisine: cui,
+            meal_type: mlt,
             ingredients: ing,
             instructions: ins,
           }),

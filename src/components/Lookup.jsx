@@ -85,9 +85,25 @@ function Lookup() {
     const filter = recipes.filter(
       (recipe) => recipe.cuisine.toLowerCase() === inp[0].toLowerCase()
     );
+
+    //meal_type
+
+    console.log("inp[0]: " + inp[0]);
+    
+    const meal_filter = recipes.filter(
+      (recipe) => recipe.meal_type === inp[0]
+    );
+
+    console.log("meal_filter: " + meal_filter.length);
+    console.log("filter: " + filter.length);
+
     //means there's a cuisine search
     if (filter.length > 0) {
       setFilteredRecipes([...filteredRecipes, ...filter]);
+    }
+    //meal_type search
+    else if (meal_filter.length > 0) {      
+      setFilteredRecipes([...filteredRecipes, ...meal_filter]);
     }
     //name search
     else {
@@ -109,16 +125,39 @@ function Lookup() {
 
       //ingredient search
       if (recipe_counter == 0) {
-          //console.log("in ingredients search");
-          const lookup_ingredients = inp.join(" ");
-          const ingredients_filter = recipes.filter((recipe) => {
+        //console.log("in ingredients search");
+        let meal_type_counter = 0;
+        const lookup_ingredients = inp.join(" ");
+        const ingredients_filter = recipes.filter((recipe) => {
           let recipeIngredient = Array.isArray(recipe.ingredients)
           ? recipe.ingredients.join(" ")
           : recipe.ingredients;
-          return recipeIngredient.toLowerCase().includes(lookup_ingredients.toLowerCase());
+          if (recipeIngredient.toLowerCase().includes(lookup_ingredients.toLowerCase()) == true) {
+            meal_type_counter++;
+
+          }
+        return recipeIngredient.toLowerCase().includes(lookup_ingredients.toLowerCase());
         });
-        setFilteredRecipes([...filteredRecipes, ...ingredients_filter]);
+        setFilteredRecipes([...filteredRecipes, ...ingredients_filter]);  
+          
+        //meal type search
+        /*
+        //console.log("in meal search");
+        const lookup_meal = inp.join(" ");
+        const meal_filter = recipes.filter(
+          (recipe) => {
+            let recipeMeal = Array.isArray(recipe.meal_type)
+            ? recipe.meal_type.join(" ")
+            : recipe.meal_type;
+            return recipeMeal.toLowerCase().includes(lookup_meal.toLowerCase());
+          }
+        );
+        setFilteredRecipes([...filteredrecipes, ...meal_filter]);
+        */
+
       }
+
+      
     }
   }
 
